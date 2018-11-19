@@ -1,0 +1,1018 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AirTicket">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="25" Nullable="false" />
+          <Property Name="Country" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="LName" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="FName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FNameEng" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SNameEng" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IntPassport" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone" Type="nchar" MaxLength="11" Nullable="false" />
+          <Property Name="Account" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Hotel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Star" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="City" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="KindOfRoom">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Client" Type="int" Nullable="false" />
+          <Property Name="DateStart" Type="date" Nullable="false" />
+          <Property Name="DateEnd" Type="date" Nullable="false" />
+          <Property Name="Country" Type="int" Nullable="false" />
+          <Property Name="Food" Type="int" Nullable="false" />
+          <Property Name="Star" Type="int" Nullable="false" />
+          <Property Name="NumberOfGuest" Type="int" Nullable="false" />
+          <Property Name="NumberOfChild" Type="int" />
+          <Property Name="Status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Hotel" Type="int" Nullable="false" />
+          <Property Name="Kind" Type="int" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StarOfHotel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Count" Type="int" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="TourManager">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Fio" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PhNum" Type="nchar" MaxLength="11" Nullable="false" />
+          <Property Name="Account" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="TypeOfFood">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="LName" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="FName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FNameEng" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SNameEng" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IntPassport" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone" Type="nchar" MaxLength="11" Nullable="false" />
+          <Property Name="Account" Type="int" />
+        </EntityType>
+        <EntityType Name="Voucher">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Place" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__City__Country__5EBF139D">
+          <End Role="Country" Type="Self.Country" Multiplicity="1" />
+          <End Role="City" Type="Self.City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="City">
+              <PropertyRef Name="Country" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Client__Account__5DCAEF64">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="Account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Hotel__City__5FB337D6">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Hotel">
+              <PropertyRef Name="City" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__Client__60A75C0F">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="Client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__Country__619B8048">
+          <End Role="Country" Type="Self.Country" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="Country" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__Food__628FA481">
+          <End Role="TypeOfFood" Type="Self.TypeOfFood" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOfFood">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="Food" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__Star__6383C8BA">
+          <End Role="StarOfHotel" Type="Self.StarOfHotel" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StarOfHotel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="Star" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__Status__6477ECF3">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Room__Hotel__656C112C">
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="1" />
+          <End Role="Room" Type="Self.Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Room">
+              <PropertyRef Name="Hotel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Room__Kind__66603565">
+          <End Role="KindOfRoom" Type="Self.KindOfRoom" Multiplicity="1" />
+          <End Role="Room" Type="Self.Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KindOfRoom">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Room">
+              <PropertyRef Name="Kind" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TourManag__Accou__6754599E">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="TourManager" Type="Self.TourManager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TourManager">
+              <PropertyRef Name="Account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Voucher__Place__68487DD7">
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="1" />
+          <End Role="Voucher" Type="Self.Voucher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Voucher">
+              <PropertyRef Name="Place" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ModelContainer">
+          <EntitySet Name="AirTicket" EntityType="Self.AirTicket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hotel" EntityType="Self.Hotel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KindOfRoom" EntityType="Self.KindOfRoom" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Request" EntityType="Self.Request" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Room" EntityType="Self.Room" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StarOfHotel" EntityType="Self.StarOfHotel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TourManager" EntityType="Self.TourManager" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeOfFood" EntityType="Self.TypeOfFood" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Voucher" EntityType="Self.Voucher" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__City__Country__5EBF139D" Association="Self.FK__City__Country__5EBF139D">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="City" EntitySet="City" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Client__Account__5DCAEF64" Association="Self.FK__Client__Account__5DCAEF64">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Hotel__City__5FB337D6" Association="Self.FK__Hotel__City__5FB337D6">
+            <End Role="City" EntitySet="City" />
+            <End Role="Hotel" EntitySet="Hotel" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__Client__60A75C0F" Association="Self.FK__Request__Client__60A75C0F">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__Country__619B8048" Association="Self.FK__Request__Country__619B8048">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__Food__628FA481" Association="Self.FK__Request__Food__628FA481">
+            <End Role="TypeOfFood" EntitySet="TypeOfFood" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__Star__6383C8BA" Association="Self.FK__Request__Star__6383C8BA">
+            <End Role="StarOfHotel" EntitySet="StarOfHotel" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__Status__6477ECF3" Association="Self.FK__Request__Status__6477ECF3">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Room__Hotel__656C112C" Association="Self.FK__Room__Hotel__656C112C">
+            <End Role="Hotel" EntitySet="Hotel" />
+            <End Role="Room" EntitySet="Room" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Room__Kind__66603565" Association="Self.FK__Room__Kind__66603565">
+            <End Role="KindOfRoom" EntitySet="KindOfRoom" />
+            <End Role="Room" EntitySet="Room" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TourManag__Accou__6754599E" Association="Self.FK__TourManag__Accou__6754599E">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="TourManager" EntitySet="TourManager" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Voucher__Place__68487DD7" Association="Self.FK__Voucher__Place__68487DD7">
+            <End Role="Hotel" EntitySet="Hotel" />
+            <End Role="Voucher" EntitySet="Voucher" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AirTicket">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="Self.FK__Client__Account__5DCAEF64" FromRole="AspNetUsers" ToRole="Client" />
+          <NavigationProperty Name="TourManager" Relationship="Self.FK__TourManag__Accou__6754599E" FromRole="AspNetUsers" ToRole="TourManager" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="25" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Country" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Country1" Relationship="Self.FK__City__Country__5EBF139D" FromRole="City" ToRole="Country" />
+          <NavigationProperty Name="Hotel" Relationship="Self.FK__Hotel__City__5FB337D6" FromRole="City" ToRole="Hotel" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="LName" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="FName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FNameEng" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SNameEng" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IntPassport" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="11" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Account" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK__Client__Account__5DCAEF64" FromRole="Client" ToRole="AspNetUsers" />
+          <NavigationProperty Name="Request" Relationship="Self.FK__Request__Client__60A75C0F" FromRole="Client" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="25" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="City" Relationship="Self.FK__City__Country__5EBF139D" FromRole="Country" ToRole="City" />
+          <NavigationProperty Name="Request" Relationship="Self.FK__Request__Country__619B8048" FromRole="Country" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="Hotel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Star" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="City" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="City1" Relationship="Self.FK__Hotel__City__5FB337D6" FromRole="Hotel" ToRole="City" />
+          <NavigationProperty Name="Room" Relationship="Self.FK__Room__Hotel__656C112C" FromRole="Hotel" ToRole="Room" />
+          <NavigationProperty Name="Voucher" Relationship="Self.FK__Voucher__Place__68487DD7" FromRole="Hotel" ToRole="Voucher" />
+        </EntityType>
+        <EntityType Name="KindOfRoom">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Room" Relationship="Self.FK__Room__Kind__66603565" FromRole="KindOfRoom" ToRole="Room" />
+        </EntityType>
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Client" Type="Int32" Nullable="false" />
+          <Property Name="DateStart" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DateEnd" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Country" Type="Int32" Nullable="false" />
+          <Property Name="Food" Type="Int32" Nullable="false" />
+          <Property Name="Star" Type="Int32" Nullable="false" />
+          <Property Name="NumberOfGuest" Type="Int32" Nullable="false" />
+          <Property Name="NumberOfChild" Type="Int32" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Client1" Relationship="Self.FK__Request__Client__60A75C0F" FromRole="Request" ToRole="Client" />
+          <NavigationProperty Name="Country1" Relationship="Self.FK__Request__Country__619B8048" FromRole="Request" ToRole="Country" />
+          <NavigationProperty Name="TypeOfFood" Relationship="Self.FK__Request__Food__628FA481" FromRole="Request" ToRole="TypeOfFood" />
+          <NavigationProperty Name="StarOfHotel" Relationship="Self.FK__Request__Star__6383C8BA" FromRole="Request" ToRole="StarOfHotel" />
+          <NavigationProperty Name="Status1" Relationship="Self.FK__Request__Status__6477ECF3" FromRole="Request" ToRole="Status" />
+        </EntityType>
+        <EntityType Name="Room">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Hotel" Type="Int32" Nullable="false" />
+          <Property Name="Kind" Type="Int32" Nullable="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Hotel1" Relationship="Self.FK__Room__Hotel__656C112C" FromRole="Room" ToRole="Hotel" />
+          <NavigationProperty Name="KindOfRoom" Relationship="Self.FK__Room__Kind__66603565" FromRole="Room" ToRole="KindOfRoom" />
+        </EntityType>
+        <EntityType Name="StarOfHotel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Count" Type="Int32" />
+          <NavigationProperty Name="Request" Relationship="Self.FK__Request__Star__6383C8BA" FromRole="StarOfHotel" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Request" Relationship="Self.FK__Request__Status__6477ECF3" FromRole="Status" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="TourManager">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Fio" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhNum" Type="String" MaxLength="11" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Account" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK__TourManag__Accou__6754599E" FromRole="TourManager" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="TypeOfFood">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Request" Relationship="Self.FK__Request__Food__628FA481" FromRole="TypeOfFood" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="LName" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="FName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FNameEng" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SNameEng" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IntPassport" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="11" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Account" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Voucher">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Place" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Hotel" Relationship="Self.FK__Voucher__Place__68487DD7" FromRole="Voucher" ToRole="Hotel" />
+        </EntityType>
+        <Association Name="FK__Client__Account__5DCAEF64">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="Account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TourManag__Accou__6754599E">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="TourManager" Type="Self.TourManager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TourManager">
+              <PropertyRef Name="Account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__City__Country__5EBF139D">
+          <End Role="Country" Type="Self.Country" Multiplicity="1" />
+          <End Role="City" Type="Self.City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="City">
+              <PropertyRef Name="Country" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Hotel__City__5FB337D6">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Hotel">
+              <PropertyRef Name="City" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__Client__60A75C0F">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="Client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__Country__619B8048">
+          <End Role="Country" Type="Self.Country" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="Country" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Room__Hotel__656C112C">
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="1" />
+          <End Role="Room" Type="Self.Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Room">
+              <PropertyRef Name="Hotel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Voucher__Place__68487DD7">
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="1" />
+          <End Role="Voucher" Type="Self.Voucher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Voucher">
+              <PropertyRef Name="Place" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Room__Kind__66603565">
+          <End Role="KindOfRoom" Type="Self.KindOfRoom" Multiplicity="1" />
+          <End Role="Room" Type="Self.Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KindOfRoom">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Room">
+              <PropertyRef Name="Kind" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__Food__628FA481">
+          <End Role="TypeOfFood" Type="Self.TypeOfFood" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeOfFood">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="Food" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__Star__6383C8BA">
+          <End Role="StarOfHotel" Type="Self.StarOfHotel" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StarOfHotel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="Star" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Request__Status__6477ECF3">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Request" Type="Self.Request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="*" />
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AirTicket" EntityType="Self.AirTicket" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
+          <EntitySet Name="City" EntityType="Self.City" />
+          <EntitySet Name="Client" EntityType="Self.Client" />
+          <EntitySet Name="Country" EntityType="Self.Country" />
+          <EntitySet Name="Hotel" EntityType="Self.Hotel" />
+          <EntitySet Name="KindOfRoom" EntityType="Self.KindOfRoom" />
+          <EntitySet Name="Request" EntityType="Self.Request" />
+          <EntitySet Name="Room" EntityType="Self.Room" />
+          <EntitySet Name="StarOfHotel" EntityType="Self.StarOfHotel" />
+          <EntitySet Name="Status" EntityType="Self.Status" />
+          <EntitySet Name="TourManager" EntityType="Self.TourManager" />
+          <EntitySet Name="TypeOfFood" EntityType="Self.TypeOfFood" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="Voucher" EntityType="Self.Voucher" />
+          <AssociationSet Name="FK__Client__Account__5DCAEF64" Association="Self.FK__Client__Account__5DCAEF64">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TourManag__Accou__6754599E" Association="Self.FK__TourManag__Accou__6754599E">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="TourManager" EntitySet="TourManager" />
+          </AssociationSet>
+          <AssociationSet Name="FK__City__Country__5EBF139D" Association="Self.FK__City__Country__5EBF139D">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="City" EntitySet="City" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Hotel__City__5FB337D6" Association="Self.FK__Hotel__City__5FB337D6">
+            <End Role="City" EntitySet="City" />
+            <End Role="Hotel" EntitySet="Hotel" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__Client__60A75C0F" Association="Self.FK__Request__Client__60A75C0F">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__Country__619B8048" Association="Self.FK__Request__Country__619B8048">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Room__Hotel__656C112C" Association="Self.FK__Room__Hotel__656C112C">
+            <End Role="Hotel" EntitySet="Hotel" />
+            <End Role="Room" EntitySet="Room" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Voucher__Place__68487DD7" Association="Self.FK__Voucher__Place__68487DD7">
+            <End Role="Hotel" EntitySet="Hotel" />
+            <End Role="Voucher" EntitySet="Voucher" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Room__Kind__66603565" Association="Self.FK__Room__Kind__66603565">
+            <End Role="KindOfRoom" EntitySet="KindOfRoom" />
+            <End Role="Room" EntitySet="Room" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__Food__628FA481" Association="Self.FK__Request__Food__628FA481">
+            <End Role="TypeOfFood" EntitySet="TypeOfFood" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__Star__6383C8BA" Association="Self.FK__Request__Star__6383C8BA">
+            <End Role="StarOfHotel" EntitySet="StarOfHotel" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Request__Status__6477ECF3" Association="Self.FK__Request__Status__6477ECF3">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Request" EntitySet="Request" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="AirTicket">
+            <EntityTypeMapping TypeName="Model.AirTicket">
+              <MappingFragment StoreEntitySet="AirTicket">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="Model.AspNetRoles">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="Model.AspNetUsers">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="City">
+            <EntityTypeMapping TypeName="Model.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="Model.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="LName" ColumnName="LName" />
+                <ScalarProperty Name="FName" ColumnName="FName" />
+                <ScalarProperty Name="SName" ColumnName="SName" />
+                <ScalarProperty Name="FNameEng" ColumnName="FNameEng" />
+                <ScalarProperty Name="SNameEng" ColumnName="SNameEng" />
+                <ScalarProperty Name="IntPassport" ColumnName="IntPassport" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Account" ColumnName="Account" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Country">
+            <EntityTypeMapping TypeName="Model.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hotel">
+            <EntityTypeMapping TypeName="Model.Hotel">
+              <MappingFragment StoreEntitySet="Hotel">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Star" ColumnName="Star" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="City" ColumnName="City" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KindOfRoom">
+            <EntityTypeMapping TypeName="Model.KindOfRoom">
+              <MappingFragment StoreEntitySet="KindOfRoom">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Request">
+            <EntityTypeMapping TypeName="Model.Request">
+              <MappingFragment StoreEntitySet="Request">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Client" ColumnName="Client" />
+                <ScalarProperty Name="DateStart" ColumnName="DateStart" />
+                <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Food" ColumnName="Food" />
+                <ScalarProperty Name="Star" ColumnName="Star" />
+                <ScalarProperty Name="NumberOfGuest" ColumnName="NumberOfGuest" />
+                <ScalarProperty Name="NumberOfChild" ColumnName="NumberOfChild" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Room">
+            <EntityTypeMapping TypeName="Model.Room">
+              <MappingFragment StoreEntitySet="Room">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Hotel" ColumnName="Hotel" />
+                <ScalarProperty Name="Kind" ColumnName="Kind" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StarOfHotel">
+            <EntityTypeMapping TypeName="Model.StarOfHotel">
+              <MappingFragment StoreEntitySet="StarOfHotel">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="Model.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TourManager">
+            <EntityTypeMapping TypeName="Model.TourManager">
+              <MappingFragment StoreEntitySet="TourManager">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Fio" ColumnName="Fio" />
+                <ScalarProperty Name="PhNum" ColumnName="PhNum" />
+                <ScalarProperty Name="Account" ColumnName="Account" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeOfFood">
+            <EntityTypeMapping TypeName="Model.TypeOfFood">
+              <MappingFragment StoreEntitySet="TypeOfFood">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="Model.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="LName" ColumnName="LName" />
+                <ScalarProperty Name="FName" ColumnName="FName" />
+                <ScalarProperty Name="SName" ColumnName="SName" />
+                <ScalarProperty Name="FNameEng" ColumnName="FNameEng" />
+                <ScalarProperty Name="SNameEng" ColumnName="SNameEng" />
+                <ScalarProperty Name="IntPassport" ColumnName="IntPassport" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Account" ColumnName="Account" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Voucher">
+            <EntityTypeMapping TypeName="Model.Voucher">
+              <MappingFragment StoreEntitySet="Voucher">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Place" ColumnName="Place" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="Model.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

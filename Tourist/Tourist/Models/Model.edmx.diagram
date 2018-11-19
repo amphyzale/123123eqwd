@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7fa263a3a5fb4ec7a020a015e5623576" Name="Diagram1" ZoomLevel="40">
+        <EntityTypeShape EntityType="Model.AirTicket" Width="1.5" PointX="7.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AspNetRoles" Width="1.5" PointX="1.5" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.AspNetUsers" Width="1.5" PointX="1.5" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.City" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Client" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Country" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Hotel" Width="1.5" PointX="5.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.KindOfRoom" Width="1.5" PointX="5.25" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Request" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Room" Width="1.5" PointX="7.5" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.StarOfHotel" Width="1.5" PointX="0.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Status" Width="1.5" PointX="0.75" PointY="21.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TourManager" Width="1.5" PointX="3.75" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.TypeOfFood" Width="1.5" PointX="0.75" PointY="23.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.User" Width="1.5" PointX="2.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Voucher" Width="1.5" PointX="7.5" PointY="8.875" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK__Client__Account__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__TourManag__Accou__6754599E" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__City__Country__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Hotel__City__5FB337D6" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Request__Client__60A75C0F" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Request__Country__619B8048" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Room__Hotel__656C112C" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Voucher__Place__68487DD7" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Room__Kind__66603565" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Request__Food__628FA481" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Request__Star__6383C8BA" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__Request__Status__6477ECF3" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
