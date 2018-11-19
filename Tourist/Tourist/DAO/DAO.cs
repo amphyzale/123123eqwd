@@ -24,6 +24,7 @@ namespace Tourist.DAO
         {
             Connection.Close();
             Logger.For(this).Info("Disconnect");
+            Console.WriteLine("do nothing code for lab");
         }
     }
 }
