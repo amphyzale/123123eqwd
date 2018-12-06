@@ -5,11 +5,23 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Airport">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="City" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="AirTicket">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="DateTimeIn" Type="datetime" Nullable="false" />
+          <Property Name="DateTimeOut" Type="datetime" Nullable="false" />
+          <Property Name="Client" Type="int" Nullable="false" />
+          <Property Name="Airport" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="AspNetRoles">
           <Key>
@@ -143,20 +155,6 @@
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Type" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="LName" Type="numeric" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="FName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="SName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="FNameEng" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="SNameEng" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="IntPassport" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Phone" Type="nchar" MaxLength="11" Nullable="false" />
-          <Property Name="Account" Type="int" />
-        </EntityType>
         <EntityType Name="Voucher">
           <Key>
             <PropertyRef Name="Id" />
@@ -164,6 +162,42 @@
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="Place" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="FK__Airport__City__6FE99F9F">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="Airport" Type="Self.Airport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Airport">
+              <PropertyRef Name="City" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AirTicket__Airpo__71D1E811">
+          <End Role="Airport" Type="Self.Airport" Multiplicity="1" />
+          <End Role="AirTicket" Type="Self.AirTicket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Airport">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AirTicket">
+              <PropertyRef Name="Airport" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AirTicket__Clien__70DDC3D8">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="AirTicket" Type="Self.AirTicket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AirTicket">
+              <PropertyRef Name="Client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__City__Country__5EBF139D">
           <End Role="Country" Type="Self.Country" Multiplicity="1" />
           <End Role="City" Type="Self.City" Multiplicity="*" />
@@ -337,6 +371,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Хранилище ModelContainer">
+          <EntitySet Name="Airport" EntityType="Self.Airport" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AirTicket" EntityType="Self.AirTicket" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
@@ -352,8 +387,19 @@
           <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TourManager" EntityType="Self.TourManager" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TypeOfFood" EntityType="Self.TypeOfFood" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Voucher" EntityType="Self.Voucher" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Airport__City__6FE99F9F" Association="Self.FK__Airport__City__6FE99F9F">
+            <End Role="City" EntitySet="City" />
+            <End Role="Airport" EntitySet="Airport" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AirTicket__Airpo__71D1E811" Association="Self.FK__AirTicket__Airpo__71D1E811">
+            <End Role="Airport" EntitySet="Airport" />
+            <End Role="AirTicket" EntitySet="AirTicket" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AirTicket__Clien__70DDC3D8" Association="Self.FK__AirTicket__Clien__70DDC3D8">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="AirTicket" EntitySet="AirTicket" />
+          </AssociationSet>
           <AssociationSet Name="FK__City__Country__5EBF139D" Association="Self.FK__City__Country__5EBF139D">
             <End Role="Country" EntitySet="Country" />
             <End Role="City" EntitySet="City" />
@@ -416,11 +462,27 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Airport">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="City" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="City1" Relationship="Self.FK__Airport__City__6FE99F9F" FromRole="Airport" ToRole="City" />
+          <NavigationProperty Name="AirTicket" Relationship="Self.FK__AirTicket__Airpo__71D1E811" FromRole="Airport" ToRole="AirTicket" />
+        </EntityType>
         <EntityType Name="AirTicket">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="DateTimeIn" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateTimeOut" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Client" Type="Int32" Nullable="false" />
+          <Property Name="Airport" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Airport1" Relationship="Self.FK__AirTicket__Airpo__71D1E811" FromRole="AirTicket" ToRole="Airport" />
+          <NavigationProperty Name="Client1" Relationship="Self.FK__AirTicket__Clien__70DDC3D8" FromRole="AirTicket" ToRole="Client" />
         </EntityType>
         <EntityType Name="AspNetRoles">
           <Key>
@@ -457,6 +519,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="25" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Country" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Airport" Relationship="Self.FK__Airport__City__6FE99F9F" FromRole="City" ToRole="Airport" />
           <NavigationProperty Name="Country1" Relationship="Self.FK__City__Country__5EBF139D" FromRole="City" ToRole="Country" />
           <NavigationProperty Name="Hotel" Relationship="Self.FK__Hotel__City__5FB337D6" FromRole="City" ToRole="Hotel" />
         </EntityType>
@@ -473,6 +536,7 @@
           <Property Name="IntPassport" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Phone" Type="String" MaxLength="11" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="Account" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AirTicket" Relationship="Self.FK__AirTicket__Clien__70DDC3D8" FromRole="Client" ToRole="AirTicket" />
           <NavigationProperty Name="AspNetUsers" Relationship="Self.FK__Client__Account__5DCAEF64" FromRole="Client" ToRole="AspNetUsers" />
           <NavigationProperty Name="Request" Relationship="Self.FK__Request__Client__60A75C0F" FromRole="Client" ToRole="Request" />
         </EntityType>
@@ -571,20 +635,6 @@
           <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Request" Relationship="Self.FK__Request__Food__628FA481" FromRole="TypeOfFood" ToRole="Request" />
         </EntityType>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="LName" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="FName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="SName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="FNameEng" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="SNameEng" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="IntPassport" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Phone" Type="String" MaxLength="11" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Account" Type="Int32" />
-        </EntityType>
         <EntityType Name="Voucher">
           <Key>
             <PropertyRef Name="Id" />
@@ -593,6 +643,42 @@
           <Property Name="Place" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Hotel" Relationship="Self.FK__Voucher__Place__68487DD7" FromRole="Voucher" ToRole="Hotel" />
         </EntityType>
+        <Association Name="FK__Airport__City__6FE99F9F">
+          <End Role="City" Type="Self.City" Multiplicity="1" />
+          <End Role="Airport" Type="Self.Airport" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Airport">
+              <PropertyRef Name="City" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AirTicket__Airpo__71D1E811">
+          <End Role="Airport" Type="Self.Airport" Multiplicity="1" />
+          <End Role="AirTicket" Type="Self.AirTicket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Airport">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AirTicket">
+              <PropertyRef Name="Airport" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AirTicket__Clien__70DDC3D8">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="AirTicket" Type="Self.AirTicket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AirTicket">
+              <PropertyRef Name="Client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Client__Account__5DCAEF64">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
           <End Role="Client" Type="Self.Client" Multiplicity="*" />
@@ -742,6 +828,7 @@
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
         </Association>
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Airport" EntityType="Self.Airport" />
           <EntitySet Name="AirTicket" EntityType="Self.AirTicket" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
@@ -756,8 +843,19 @@
           <EntitySet Name="Status" EntityType="Self.Status" />
           <EntitySet Name="TourManager" EntityType="Self.TourManager" />
           <EntitySet Name="TypeOfFood" EntityType="Self.TypeOfFood" />
-          <EntitySet Name="User" EntityType="Self.User" />
           <EntitySet Name="Voucher" EntityType="Self.Voucher" />
+          <AssociationSet Name="FK__Airport__City__6FE99F9F" Association="Self.FK__Airport__City__6FE99F9F">
+            <End Role="City" EntitySet="City" />
+            <End Role="Airport" EntitySet="Airport" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AirTicket__Airpo__71D1E811" Association="Self.FK__AirTicket__Airpo__71D1E811">
+            <End Role="Airport" EntitySet="Airport" />
+            <End Role="AirTicket" EntitySet="AirTicket" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AirTicket__Clien__70DDC3D8" Association="Self.FK__AirTicket__Clien__70DDC3D8">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="AirTicket" EntitySet="AirTicket" />
+          </AssociationSet>
           <AssociationSet Name="FK__Client__Account__5DCAEF64" Association="Self.FK__Client__Account__5DCAEF64">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Client" EntitySet="Client" />
@@ -817,10 +915,23 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Airport">
+            <EntityTypeMapping TypeName="Model.Airport">
+              <MappingFragment StoreEntitySet="Airport">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="AirTicket">
             <EntityTypeMapping TypeName="Model.AirTicket">
               <MappingFragment StoreEntitySet="AirTicket">
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DateTimeIn" ColumnName="DateTimeIn" />
+                <ScalarProperty Name="DateTimeOut" ColumnName="DateTimeOut" />
+                <ScalarProperty Name="Client" ColumnName="Client" />
+                <ScalarProperty Name="Airport" ColumnName="Airport" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -958,21 +1069,6 @@
               <MappingFragment StoreEntitySet="TypeOfFood">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="User">
-            <EntityTypeMapping TypeName="Model.User">
-              <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="LName" ColumnName="LName" />
-                <ScalarProperty Name="FName" ColumnName="FName" />
-                <ScalarProperty Name="SName" ColumnName="SName" />
-                <ScalarProperty Name="FNameEng" ColumnName="FNameEng" />
-                <ScalarProperty Name="SNameEng" ColumnName="SNameEng" />
-                <ScalarProperty Name="IntPassport" ColumnName="IntPassport" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Account" ColumnName="Account" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

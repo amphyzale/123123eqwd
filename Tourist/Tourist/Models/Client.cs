@@ -17,6 +17,7 @@ namespace Tourist.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Client()
         {
+            this.AirTicket = new HashSet<AirTicket>();
             this.Request = new HashSet<Request>();
         }
     
@@ -30,6 +31,8 @@ namespace Tourist.Models
         public string Phone { get; set; }
         public string Account { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AirTicket> AirTicket { get; set; }
         public virtual AspNetUsers AspNetUsers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Request> Request { get; set; }

@@ -25,6 +25,7 @@ namespace Tourist.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Airport> Airport { get; set; }
         public virtual DbSet<AirTicket> AirTicket { get; set; }
         public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
@@ -39,7 +40,6 @@ namespace Tourist.Models
         public virtual DbSet<Status> Status { get; set; }
         public virtual DbSet<TourManager> TourManager { get; set; }
         public virtual DbSet<TypeOfFood> TypeOfFood { get; set; }
-        public virtual DbSet<User> User { get; set; }
         public virtual DbSet<Voucher> Voucher { get; set; }
     }
 }

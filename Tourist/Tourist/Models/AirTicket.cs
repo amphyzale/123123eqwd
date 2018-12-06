@@ -15,5 +15,12 @@ namespace Tourist.Models
     public partial class AirTicket
     {
         public int Id { get; set; }
+        public System.DateTime DateTimeIn { get; set; }
+        public System.DateTime DateTimeOut { get; set; }
+        public int Client { get; set; }
+        public int Airport { get; set; }
+    
+        public virtual Airport Airport1 { get; set; }
+        public virtual Client Client1 { get; set; }
     }
 }

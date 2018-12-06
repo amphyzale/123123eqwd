@@ -17,6 +17,7 @@ namespace Tourist.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public City()
         {
+            this.Airport = new HashSet<Airport>();
             this.Hotel = new HashSet<Hotel>();
         }
     
@@ -24,6 +25,8 @@ namespace Tourist.Models
         public string Name { get; set; }
         public int Country { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Airport> Airport { get; set; }
         public virtual Country Country1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Hotel> Hotel { get; set; }
